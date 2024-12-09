@@ -35,6 +35,8 @@ export enum ApiSuccessMessages {
     SINGUP_SUCCESS = "User created successfully",
     SIGNIN_SUCCESS = "User logged in successfully",
     SIGNOUT_SUCCESS = "User logged out successfully",
+    POST_CREATED = "Post created successfully",
+    POST_DELETED = "Post deleted successfully",
 
 }
 
@@ -43,4 +45,7 @@ export enum ApiErrorMessages {
     USER_NOT_FOUND = "User not found",
     INCORRECT_PASSWORD = "Incorrect password",
     INVALID_TOKEN = "Invalid token",
+    POST_ALREADY_EXISTS = "Post already exists",
+    POST_NOT_FOUND = "Post not found",
+    FAILED_TO_DELETE = "Failed to delete",
  }

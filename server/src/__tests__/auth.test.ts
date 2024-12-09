@@ -71,7 +71,7 @@ describe("Auth controller testng", () => {
             expect(response.status).toBe(200)
             expect(response.body.message).toBe(ApiSuccessMessages.SIGNOUT_SUCCESS)
             expect(response.header['accesstoken']).toBeUndefined()
-            expect(response.header['refreshtoken']).toBeUndefined()
+            expect(response.header['access-token']).toBeUndefined()
         })
     })
 

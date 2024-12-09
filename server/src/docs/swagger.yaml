@@ -84,6 +84,36 @@ paths:
           500:
             description: "Oops! Something went wrong. Please try again later."
 
+    /api/v1/posts/create-post:
+      post:
+        summary: create post
+        description: create post api
+        requestBody:
+          description: post details
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostSchema'
+                required:
+                  - title
+                  - desc
+                  - username
+                  - categories
+                example:
+                  title: mocktitle
+                  desc: mockdesc
+                  username: mockusername
+                  categories: mockcategories
+        responses:
+          201:
+            description: "post created successfully"
+          400:
+            description: "post already exist"
+          500:
+            description: "Oops! Something went wrong. Please try again later."
+
+
 components:
   schemas:
     SignUpSchema:
@@ -116,3 +146,23 @@ components:
         password:
           type: string
           example: mockpassword123456A$
+    PostSchema:
+      type: object
+      required:
+        - title
+        - desc
+        - username
+        - categories
+      properties:
+        title:
+          type: string
+          example: mocktitle
+        desc:
+          type: string
+          example: mockdesc
+        username:
+          type: string
+          example: mockusername
+        categories:
+          type: string
+          example: mockcategories
