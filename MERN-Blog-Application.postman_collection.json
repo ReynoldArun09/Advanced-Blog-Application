@@ -1,0 +1,293 @@
+{
+	"info": {
+		"_postman_id": "6e6fd233-72e4-4c31-beff-eaddc1b213a9",
+		"name": "MERN-Blog-Application",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "35402280"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Verify-user",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/verify-user",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"verify-user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Signout-user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/signout-user",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"signout-user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Signin-user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"testing@gmail.com\",\r\n    \"password\": \"test123456A$\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/signin-user",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"signin-user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Signup-user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"testing@gmail.com\",\r\n    \"username\": \"testinguser\",\r\n    \"password\": \"test123456A$\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/signup-user",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"signup-user"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Post",
+			"item": [
+				{
+					"name": "Create-post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"learn typescript\",\r\n    \"desc\": \"dummy desc about post\",\r\n    \"username\": \"testinguser\",\r\n    \"categories\": [\"typescript\", \"javascript\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/posts/create-post",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"posts",
+								"create-post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Single-Post",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/posts/single-post/675681035ed3d23f705e43aa",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"posts",
+								"single-post",
+								"675681035ed3d23f705e43aa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search-post",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/posts/search-post/typescript",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"posts",
+								"search-post",
+								"typescript"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete-post",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/posts/delete-post/67550c2c44f87aa5aa51698c",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"posts",
+								"delete-post",
+								"67550c2c44f87aa5aa51698c"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Comment",
+			"item": [
+				{
+					"name": "GetAllComments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/comments/all-comments",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"comments",
+								"all-comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create-comment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"comment\": \"amazing comment\",\r\n    \"postId\": \"67567365744792f57753ac4f\",\r\n    \"username\": \"testinguser\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/comments/create-comment",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"comments",
+								"create-comment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete-comment",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"comment\": \"amazing ocmment\",\r\n    \"postId\": \"67550fd7ba6d46b6c8dfab8b\",\r\n    \"username\": \"reynold\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/comments/delete-comment/6755103c50038f9027a4bcca",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"comments",
+								"delete-comment",
+								"6755103c50038f9027a4bcca"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
