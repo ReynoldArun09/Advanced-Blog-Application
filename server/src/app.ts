@@ -5,7 +5,7 @@ import helmet from 'helmet'
 import YAML from 'yamljs'
 import swaggerUI from 'swagger-ui-express'
 import { ParsedEnvVariables } from './config/env-variables'
-import { authRoutes, postRoutes } from './routes'
+import { authRoutes, commentRoutes, postRoutes } from './routes'
 import { ErrorMiddleware } from './middlewares'
 
 
@@ -26,6 +26,7 @@ if(ParsedEnvVariables.NODE_ENV === 'development') {
 
 app.use("/api/v1/auth", authRoutes)
 app.use("/api/v1/posts", postRoutes)
+app.use("/api/v1/comments", commentRoutes)
 
 app.use(ErrorMiddleware)
 

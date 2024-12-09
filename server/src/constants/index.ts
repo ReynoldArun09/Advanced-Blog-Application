@@ -37,6 +37,8 @@ export enum ApiSuccessMessages {
     SIGNOUT_SUCCESS = "User logged out successfully",
     POST_CREATED = "Post created successfully",
     POST_DELETED = "Post deleted successfully",
+    COMMENT_CREATED = "Comment created successfully",
+    COMMENT_DELETED = "Comment deleted successfully",
 
 }
 
