@@ -6,6 +6,26 @@ import { cloudinary } from '../lib';
 import { PostSchemaType } from '../schemas/post-schema';
 
 
+export const GetAllBlogPostApi = AsyncWrapper(async (req: Request, res: Response) => {
+    const {page = 1, limit = 5} = req.query
+    const pageNum = parseInt(page as string, 10)
+    const limitNum = parseInt(limit as string, 10)
+    const skip = (pageNum - 1) * limitNum
+
+
+    const posts = await Post.find({}).sort({createdAt: -1}).skip(skip).limit(limitNum)
+    const totalPost = await Post.countDocuments({})
+    const hasMore = pageNum * limitNum < totalPost
+
+    res.status(HttpStatusCode.OK).json({
+        data: posts,
+        hasMore,
+        nextPage: hasMore ? pageNum + 1 : null
+    })
+
+})
+
+
 export const CreatePostApi = AsyncWrapper(async (req: Request, res: Response) => {
     const {title, desc, username, categories, image} = req.body as PostSchemaType
     const userId = req.user._id
