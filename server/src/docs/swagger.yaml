@@ -1,0 +1,118 @@
+openapi: 3.1.0
+info:
+  title: Blog Application
+  description: Documentation for Blog Application
+  version: 1.0.0
+  contact:
+    name: MERN-Blog-Application
+    url: https://github.com/ReynoldArun09/MERN-Blog-Application
+servers:
+    - url: http://localhost:3000
+      description: Local server
+paths:
+    /api/v1/auth/signup-user:
+      post:
+        summary: Signup user
+        description: Signup user api
+        requestBody:
+          description: user credentials
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignUpSchema'
+              required:
+                - email
+                - password
+                - username
+              example:
+                email: mockuser@example.com
+                password: mockpassword123456A$
+                username: mockusername
+        responses:
+          201:
+            description: "User created successfully"
+          400:
+            description: "User already exists"
+          500:
+            description: "Oops! Something went wrong. Please try again later."
+
+    /api/v1/auth/signin-user:
+      post:
+        summary: Signin user
+        description: Signin user api
+        requestBody:
+          description: user credentials
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignInSchema'
+              required:
+                - email
+                - password
+              example:
+                email: mockuser@example.com
+                password: mockpassword123456A$
+        responses:
+          200:
+            description: "login successfull"
+          400:
+            description: "User not found or password is incorrect"
+          500:
+            description: "Oops! Something went wrong. Please try again later."
+
+    /api/v1/auth/signout-user:
+      post:
+        summary: Signout user
+        description: Signout user api
+        responses:
+          200:
+            description: "user logout successfull"
+          500:
+            description: "Oops! Something went wrong. Please try again later."
+
+    /api/v1/auth/verify-user:
+      get:
+        summary: verify user
+        description: verify user api
+        responses:
+          200:
+            description: "verify successfull"
+          401:
+            description: "Unauthorized"
+          500:
+            description: "Oops! Something went wrong. Please try again later."
+
+components:
+  schemas:
+    SignUpSchema:
+      type: object
+      required:
+        - email
+        - password
+        - username
+      properties:
+        email:
+          type: string
+          example: mockuser@example.com
+          format: email
+        password:
+          type: string
+          example: mockpassword123456A$
+        username:
+          type: string
+          example: mockusername
+    SignInSchema:
+      type: object
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: string
+          example: mockuser@example.com
+          format: email
+        password:
+          type: string
+          example: mockpassword123456A$

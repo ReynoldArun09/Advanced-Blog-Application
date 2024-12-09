@@ -26,4 +26,21 @@ export enum GlobalErrorMessages {
     ENV_PARSE_ERROR = "Error parsing environment variables:",
     MONGO_ENV_NOT_DEFINED = "MONGO_DB_URI environment variable not defined",
     MONGO_CONNECTION_ERROR = "MongoDB connection error: ",
+    UNAUTHORIZED = "Unauthorized",
+    INTERNAL_SERVER_ERROR = "Internal server error",
+    INVALID_ID = "Invalid id",
 }
+
+export enum ApiSuccessMessages {
+    SINGUP_SUCCESS = "User created successfully",
+    SIGNIN_SUCCESS = "User logged in successfully",
+    SIGNOUT_SUCCESS = "User logged out successfully",
+
+}
+
+export enum ApiErrorMessages {
+    USER_ALREADY_EXISTS = "User already exists",
+    USER_NOT_FOUND = "User not found",
+    INCORRECT_PASSWORD = "Incorrect password",
+    INVALID_TOKEN = "Invalid token",
+ }

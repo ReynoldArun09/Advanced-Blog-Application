@@ -5,6 +5,8 @@ import helmet from 'helmet'
 import YAML from 'yamljs'
 import swaggerUI from 'swagger-ui-express'
 import { ParsedEnvVariables } from './config/env-variables'
+import { authRoutes } from './routes'
+import { ErrorMiddleware } from './middlewares'
 
 
 const app: Application = express()
@@ -22,5 +24,8 @@ if(ParsedEnvVariables.NODE_ENV === 'development') {
     app.use('/api/v1/docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec))
 }
 
+app.use("/api/v1/auth", authRoutes)
+
+app.use(ErrorMiddleware)
 
 export default app
