@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { CreatePostApi, SignInUserApi, SignUpUserApi } from "./api";
+import { CreatePostApi, SignInUserApi, SignOutUserApi, SignUpUserApi } from "./api";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 
@@ -29,6 +29,17 @@ export function useSignUpUserMutation() {
         onSuccess: async(data) => {
             await navigate('/signin')
             toast.success(data.message)
+        }
+    })
+}
+
+
+export function useSignOutUserMutation() {
+    return useMutation({
+        mutationKey: ['sign-out-user'],
+        mutationFn: SignOutUserApi,
+        onSuccess: async() => {
+            toast.success("Signed out successfully")
         }
     })
 }
