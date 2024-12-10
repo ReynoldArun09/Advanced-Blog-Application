@@ -1,3 +1,4 @@
+import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/context/theme-provider";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter } from "react-router-dom";
@@ -16,7 +17,8 @@ export default function Providers({children}: {children: React.ReactNode}) {
     <BrowserRouter>
         <QueryClientProvider client={client}>
             <ThemeProvider defaultTheme="dark" >
-            {children}
+                {children}
+             <Toaster />
             </ThemeProvider>
         </QueryClientProvider>
     </BrowserRouter>
