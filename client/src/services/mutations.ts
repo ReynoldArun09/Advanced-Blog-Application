@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { CreatePostApi, LoginUserApi, RegisterUserApi } from "./api";
+import { CreatePostApi, SignInUserApi, SignUpUserApi } from "./api";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 
@@ -11,23 +11,23 @@ export function useCreatePostMutation() {
     })
 }
 
-export function useLoginUserMutation() {
+export function useSignInUserMutation() {
     return useMutation({
-        mutationKey: ['login-user'],
-        mutationFn: LoginUserApi,
+        mutationKey: ['sign-in-user'],
+        mutationFn: SignInUserApi,
         onSuccess: (data) => {
             toast.success(data.message)
         }
     })
 }
 
-export function useRegisterUserMutation() {
+export function useSignUpUserMutation() {
     const navigate = useNavigate()
     return useMutation({
-        mutationKey: ['register-user'],
-        mutationFn: RegisterUserApi,
+        mutationKey: ['sign-up-user'],
+        mutationFn: SignUpUserApi,
         onSuccess: async(data) => {
-            await navigate('/login')
+            await navigate('/signin')
             toast.success(data.message)
         }
     })

@@ -6,17 +6,18 @@ import {SubmitHandler, useForm} from 'react-hook-form'
 import { SignUpSchema, SignUpSchemaType } from "@/schemas/auth-schema";
 import {zodResolver} from '@hookform/resolvers/zod'
 import { Eye, EyeClosed } from "lucide-react";
-import {  useRegisterUserMutation } from "@/services/mutations";
+import { useSignUpUserMutation } from "@/services/mutations";
 
-export default function RegisterPage() {
+
+export default function SignUpPage() {
   const navigate = useNavigate();
   const [viewEye, setViewEye] = useState(false);
 
   const {register, handleSubmit, formState:{errors}} = useForm<SignUpSchemaType>({resolver: zodResolver(SignUpSchema)})
-  const {mutate: registerUser, isPending} = useRegisterUserMutation()
+  const {mutate: Signup, isPending} = useSignUpUserMutation()
 
   const onSubmit: SubmitHandler<SignUpSchemaType> = (values:SignUpSchemaType) => {
-        registerUser(values)
+        Signup(values)
   }
 
   return (
@@ -58,15 +59,15 @@ export default function RegisterPage() {
           <p className="text-rose-600">{errors.password.message}</p>
         )}
         <Button className="w-full px-4 py-4 text-lg font-bold rounded-lg">
-          {isPending ? "Submitting" : "Register"}
+          {isPending ? "Submitting" : "Signup"}
         </Button>
         <div className="flex justify-center items-center space-x-3">
           <p>Already have an account?</p>
           <p
             className="text-gray-600 font-bold underline cursor-pointer"
-            onClick={() => navigate('/login')}
+            onClick={() => navigate('/signup')}
           >
-            Login
+            Sign In
           </p>
         </div>
       </form>

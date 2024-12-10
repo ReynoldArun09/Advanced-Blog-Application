@@ -6,17 +6,18 @@ import {SubmitHandler, useForm} from 'react-hook-form'
 import { SignInSchema, SignInSchemaType } from "@/schemas/auth-schema";
 import {zodResolver} from '@hookform/resolvers/zod'
 import { Eye, EyeClosed } from "lucide-react";
-import { useLoginUserMutation } from "@/services/mutations";
+import { useSignInUserMutation } from "@/services/mutations";
 
-export default function LoginPage() {
+
+export default function SignInPage() {
   const navigate = useNavigate();
   const [viewEye, setViewEye] = useState(false);
 
   const {register, handleSubmit, formState:{errors}} = useForm<SignInSchemaType>({resolver: zodResolver(SignInSchema)})
-  const {mutate: loginUser, isPending} = useLoginUserMutation()
+  const {mutate: SignIn, isPending} = useSignInUserMutation()
 
   const onSubmit: SubmitHandler<SignInSchemaType> = (values:SignInSchemaType) => {
-        loginUser(values)
+        SignIn(values)
   }
 
   return (
@@ -57,15 +58,15 @@ export default function LoginPage() {
         className="w-full px-4 py-4 text-lg font-bold rounded-lg"
         type="submit"
       >
-        {isPending ? "Submitting" : "Login"}
+        {isPending ? "Submitting" : "Sign In"}
       </Button>
       <div className="flex justify-center items-center space-x-3">
         <p>Don't have an account?</p>
         <p
           className="text-gray-600 font-bold underline cursor-pointer"
-          onClick={() => navigate("/register")}
+          onClick={() => navigate("/signup")}
         >
-          Register
+          Sign up
         </p>
       </div>
     </form>

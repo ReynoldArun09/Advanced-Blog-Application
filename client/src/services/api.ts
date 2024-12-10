@@ -15,7 +15,7 @@ export const CreatePostApi = async(values: PostSchemaType) => {
    }
 
 }
-export const LoginUserApi = async(values: SignInSchemaType) => {
+export const SignInUserApi = async(values: SignInSchemaType) => {
     try {
      const response = await axios.post('/auth/signin-user', values)
      return response.data
@@ -28,7 +28,7 @@ export const LoginUserApi = async(values: SignInSchemaType) => {
 
  }
 
- export const RegisterUserApi = async(values: SignUpSchemaType) => {
+ export const SignUpUserApi = async(values: SignUpSchemaType) => {
     try {
      const response = await axios.post('/auth/signup-user', values)
      return response.data
