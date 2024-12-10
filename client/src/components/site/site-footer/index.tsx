@@ -14,7 +14,7 @@ const navLinks = [
 
 export default function SiteFooter() {
   return (
-   <footer className="border-t-[1px]">
+   <footer className="border-t-[1px] py-4">
     <div className="flex flex-col container mx-auto space-y-3 items-center text-center justify-center">
         <ul className="flex flex-wrap cursor-pointer gap-x-4 mx-2">
             {navLinks.map((link, index) => (
