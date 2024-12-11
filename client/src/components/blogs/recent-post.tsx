@@ -11,10 +11,10 @@ export default function RecentPost({post: {updatedAt, username, title, categorie
   console.log(index)
   return (
     <div className={cn(index !== 0 ? 'flex flex-row': '', "gap-5 py-1")}>
-       <div>
-         <img src={image || "/cat.jpg"} alt={title} className={cn(index !== 0 ? 'w-[300px]' : '',)}/>
-       </div>
-     <div className="space-y-3">
+     <div className={cn(index !== 0 ? 'w-[400px] h-[200px]' : '')}>
+         <img src={image || "/cat.jpg"} alt={title} className="w-full h-full object-cover"/>
+     </div>
+     <div className="space-y-3 w-[500px]">
          <div className="flex items-center gap-4">
             <p className="font-bold capitalize">{username}</p>
             <p className="text-muted-foreground font-semibold">{new Date(updatedAt).toString().slice(4, 15)}</p>

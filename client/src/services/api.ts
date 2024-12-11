@@ -1,7 +1,7 @@
 import { PostSchemaType } from "@/schemas/post-schema"
 import axios, { AxiosError } from "./axios"
 import { SignInSchemaType, SignUpSchemaType } from "@/schemas/auth-schema"
-import { Blogs, FetchBlogsApiResponse } from "./types"
+import { Blogs, CommentResponse, FetchBlogsApiResponse } from "./types"
 
 
 export const CreatePostApi = async(values: PostSchemaType) => {
@@ -74,6 +74,30 @@ export const SignInUserApi = async(values: SignInSchemaType) => {
 export const RecentBlogsApi = async(): Promise<Blogs[]> => {
     try {
         const response = await axios.get("/posts/recent-posts")
+        return response.data.data
+    } catch (error) {
+        if(error instanceof AxiosError) {
+            throw new Error(error.response?.data.message ?? "Something went wrong")
+        }
+        throw error
+    }
+}
+
+export const SinglePostApi = async(id:string): Promise<Blogs> => {
+    try {
+        const response = await axios.get(`/posts/single-post/${id}`)
+        return response.data.data
+    } catch (error) {
+       if(error instanceof AxiosError) {
+        throw new Error(error.response?.data.message ?? "Something went wrong")
+       }
+       throw error
+    }
+}
+
+export const GetCommentsApi = async(id:string): Promise<CommentResponse[]> => {
+    try {
+        const response = await axios.get(`/comments/all-comments/${id}`)
         return response.data.data
     } catch (error) {
         if(error instanceof AxiosError) {

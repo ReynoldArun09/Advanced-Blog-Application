@@ -16,3 +16,14 @@ export interface FetchBlogsApiResponse {
     hasMore: boolean,
     nextPage: number
 }
+
+
+export interface CommentResponse {
+ _id: string
+ comment: string
+ createdAt: string | Date
+ updatedAt: string |Date
+ userId: string
+ username: string
+ postId: string
+}
