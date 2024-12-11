@@ -5,7 +5,9 @@ import { ApiSuccessMessages, HttpStatusCode } from '../constants'
 
 
 export const GetAllCommentApi = AsyncWrapper(async (req: Request, res: Response) => {
-    const comments = await Comment.find({})
+    const postId = req.params.postId
+
+    const comments = await Comment.find({postId})
 
     res.status(HttpStatusCode.OK).json({
         success: true,

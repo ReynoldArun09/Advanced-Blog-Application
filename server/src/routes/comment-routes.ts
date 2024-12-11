@@ -4,7 +4,7 @@ import { AuthMiddleware } from "../middlewares";
 
 const commentRoutes = Router()
 
-commentRoutes.get("/all-comments", comment.GetAllCommentApi)
+commentRoutes.get("/all-comments/:postId", comment.GetAllCommentApi)
 commentRoutes.post("/create-comment", AuthMiddleware, comment.CreateCommentApi)
 commentRoutes.delete("/delete-comment/:postId/:commentId", comment.DeleteCommentApi)
 

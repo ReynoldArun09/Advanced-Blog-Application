@@ -25,6 +25,16 @@ export const GetAllBlogPostApi = AsyncWrapper(async (req: Request, res: Response
 
 })
 
+export const GetRecentBlogPostApi = AsyncWrapper(async (req: Request, res: Response) => {
+    const posts = await Post.find({}).sort({createdAt: -1}).limit(4)
+
+    res.status(HttpStatusCode.OK).json({
+        success: true,
+        data: posts,
+    })
+
+})
+
 
 export const CreatePostApi = AsyncWrapper(async (req: Request, res: Response) => {
     const {title, desc, username, categories, image} = req.body as PostSchemaType

@@ -6,6 +6,7 @@ import { PostSchema } from "../schemas/post-schema";
 const postRoutes = Router()
 
 postRoutes.get("/all-posts", post.GetAllBlogPostApi)
+postRoutes.get("/recent-posts", post.GetRecentBlogPostApi)
 postRoutes.post("/create-post", ValidationMiddleware(PostSchema), AuthMiddleware, post.CreatePostApi)
 postRoutes.get("/single-post/:id", post.SinglePostApi)
 postRoutes.delete("/delete-post/:id", post.DeletePostApi)
