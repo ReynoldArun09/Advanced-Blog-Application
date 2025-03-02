@@ -1,9 +1,11 @@
 import { type Request, type Response } from "express";
+import { v4 } from "uuid";
 import { ApiErrorMessages, ApiSuccessMessages, HttpStatusCode } from "../constants";
 import { prisma } from "../lib/prisma";
 import { initializeRedisClient } from "../lib/redis";
 import { PostSchema } from "../schemas/post-schema";
 import { AppError, AsyncWrapper, getKeyName } from "../utils";
+import { deleteObject, putObject } from "../utils/s3";
 
 export const GetAllBlogPostApi = AsyncWrapper(async (req: Request, res: Response) => {
   const { page = 1, limit = 5 } = req.query;
@@ -86,6 +88,8 @@ export const SinglePostApi = AsyncWrapper(async (req: Request, res: Response) =>
 
 export const CreatePostApi = AsyncWrapper(async (req: Request, res: Response) => {
   const { title, description } = PostSchema.parse(req.body);
+  const { file } = req.files as any;
+  const imageName = "blogs/" + v4();
   const userId = req.ctx.id;
   const existingPost = await prisma.post.findFirst({
     where: {
@@ -97,15 +101,19 @@ export const CreatePostApi = AsyncWrapper(async (req: Request, res: Response) =>
     throw new AppError(ApiErrorMessages.POST_ALREADY_EXISTS, HttpStatusCode.BAD_REQUEST);
   }
 
-  let imageUrl = "";
+  const result = await putObject(file.data, imageName);
 
-  // add aws s3 here...
+  if (!result || !result.url || !result.key) {
+    throw new AppError(ApiErrorMessages.INVALID_TOKEN, HttpStatusCode.BAD_REQUEST);
+  }
+
+  const { url, key } = result;
 
   await prisma.post.create({
     data: {
       title,
       description,
-      image: imageUrl,
+      image: `${url},${key}`,
       userId,
     },
   });
@@ -131,9 +139,9 @@ export const DeletePostApi = AsyncWrapper(async (req: Request, res: Response) =>
     throw new AppError(ApiErrorMessages.POST_NOT_FOUND, HttpStatusCode.BAD_REQUEST);
   }
 
-  //   if (existingPost.image) {
-  //     // delete from s3
-  //   }
+  if (existingPost.image) {
+    await deleteObject(existingPost.image);
+  }
 
   const result = await prisma.$transaction([
     prisma.post.delete({ where: { id: postId } }),
