@@ -23,8 +23,8 @@ To get started with the project locally:
 
 2. Navigate to the project folder:
 
-   ```bash Blog-Backend-Node-Redis-s3
-   cd
+   ```
+   cd bash Blog-Backend-Node-Redis-s3
    ```
 
 3. Install the dependencies:
@@ -50,8 +50,8 @@ Visit `http://localhost:3000` to see the project in action.
 
 2. Navigate to the project folder:
 
-   ```bash Blog-Backend-Node-Redis-s3
-   cd
+   ```
+   cd bash Blog-Backend-Node-Redis-s3
    ```
 
 3. Install the dependencies:
